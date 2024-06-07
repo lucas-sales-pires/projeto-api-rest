@@ -4,6 +4,11 @@
     - [Endpoints:](#endpoints)
     - [Observações:](#observações)
 
+# Link para utilizar a API:
+
+https://projeto-api-completa.onrender.com
+
+##
 
 
 Documentação da API de Chat
