@@ -1,5 +1,5 @@
 import express from 'express';
-import { buscarMensagemParaVoce, buscarMensagensAnteriores, enviarMensagemParaUsuario,buscarMensagemParaUsuario,buscarMensagemParaAdm,usuarioEnviarMensagemParaAdm } from '../controller/mensagemController.js';
+import { buscarMensagemParaVoce, buscarMensagensAnteriores, enviarMensagemParaUsuario,buscarMensagemParaUsuario,buscarMensagemParaAdm,usuarioEnviarMensagemParaAdm } from '../controller/mensagemController';
 
 export const routerMensagem = express.Router();
 

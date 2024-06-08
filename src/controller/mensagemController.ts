@@ -1,5 +1,5 @@
-import { conectarAoBanco } from '../models/banco.js';
-import { MensagemInterface } from '../models/mensagem.interface.js';
+import { conectarAoBanco } from '../models/banco';
+import { MensagemInterface } from '../models/mensagem.interface';
 
 
 
