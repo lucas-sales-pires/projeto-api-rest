@@ -6,6 +6,8 @@ import express from 'express';
 config();
 const porta = process.env.PORTA;
 
+const main = async () => {
+
 conectarAoBanco()
 
 const app = express();
@@ -21,3 +23,5 @@ app.use(routerMensagem);
 app.listen(porta, () => {
   console.log(`Servidor rodando na porta ${porta}`);
 });
+}
+main()
