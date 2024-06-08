@@ -10,7 +10,6 @@ https://projeto-api-completa.onrender.com
 
 ##
 
-https://projeto-api-completa.onrender.com/api/mensagens/anteriores/sala%20lucas
 
 Documentação da API de Chat
 Esta API fornece funcionalidades para gerenciar mensagens em um sistema de chat, incluindo comunicação entre usuários e administradores.
