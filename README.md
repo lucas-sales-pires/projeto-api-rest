@@ -107,6 +107,22 @@ Descrição: Permite que um usuário envie uma mensagem para o administrador.
 400 (Requisição Inválida): Dados da mensagem inválidos.
 500 (Erro Interno do Servidor): Em caso de erro.
 
+```http
+  DELETE /deletar-adm:
+```
+
+Descrição: Permite que o administrador delete uma mensagem.
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `string` | ID da mensagem|
+
+#### Retorno:
+
+200 (OK): Mensagem deletada com sucesso.
+500 (Erro Interno do Servidor): Em caso de erro.
+
+
 
 
 # Observações:
