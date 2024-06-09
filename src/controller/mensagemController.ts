@@ -137,3 +137,23 @@ export async function excluirMensagemAdm(req:any, res:any) {
     return res.status(500).json({ erro: 'Erro interno do servidor' });
   }
 }
+
+export async function excluirMensagemUsuario(req:any, res:any) {
+  try {
+    const { id } = req.body;
+    const client = await conectarAoBanco();
+    const db = client.db('chat');
+    const collection = db.collection('comunicacao');
+
+    const resultado = await collection.deleteOne({ _id: id });
+
+    if (resultado.deletedCount === 0) {
+      return res.status(404).json({ erro: 'Mensagem não encontrada' });
+    }
+
+    return res.status(200).json({ mensagem: 'Mensagem excluída com sucesso' });
+  } catch (err) {
+    console.error('Erro ao excluir mensagem:', err);
+    return res.status(500).json({ erro: 'Erro interno do servidor' });
+  }
+}
