@@ -6,7 +6,7 @@
 
 # Link para utilizar a API:
 
-https://projeto-api-completa.onrender.com
+https://projeto-api-rest.onrender.com
 
 ##
 
