@@ -6,7 +6,8 @@ import { MensagemInterface } from '../models/mensagem.interface';
 export async function buscarMensagensAnteriores(req:any, res:any) {
   try {
     const { sala } = req.params;
-    const db = await conectarAoBanco();
+    const client = await conectarAoBanco();
+    const db = client.db('chat');
     const collection = db.collection('mensagens');
 
     const mensagensAnteriores = await collection
@@ -29,7 +30,8 @@ export async function enviarMensagemParaUsuario(req:any, res:any) {
       return res.status(400).json({ erro: 'Destinatário e conteúdo são obrigatórios' });
     }
 
-    const db = await conectarAoBanco();
+    const client = await conectarAoBanco();
+    const db = client.db('chat');
     const collection = db.collection('comunicacao');
 
     const novaMensagem:MensagemInterface = {
@@ -57,26 +59,24 @@ export async function enviarMensagemParaUsuario(req:any, res:any) {
 
 export async function buscarMensagemParaVoce(req:any, res:any) {
   try {
-    const { usuario } = req.body;
-
-    const db = await conectarAoBanco();
-
+    const {usuario} = req.body; 
+    const client = await conectarAoBanco();
+    const db = client.db('chat');
     const collection = db.collection('comunicacao');
-
     const mensagens = await collection.find({ usuario }).toArray();
 
     res.status(200).json(mensagens);
   } catch (err) {
     console.error('Erro ao buscar mensagens:', err);
-    res.status(500).json({ erro: 'Erro interno do servidor' }); 
+    res.status(500).json({ erro: 'Erro interno do servidor' });
   }
 }
-
 
 export async function buscarMensagemParaUsuario(req:any, res:any) {
   try {
     const {usuario} = req.body;
-    const db = await conectarAoBanco();
+    const client = await conectarAoBanco();
+    const db = client.db('chat');
     const collection = db.collection('comunicacao');
     const mensagens = await collection.find({ usuario }).toArray();
 
@@ -91,7 +91,8 @@ export async function buscarMensagemParaUsuario(req:any, res:any) {
 export async function usuarioEnviarMensagemParaAdm(req:any, res:any) {
   try {
     const {usuario, conteudo} = req.body;
-    const db = await conectarAoBanco();
+    const client = await conectarAoBanco();
+    const db = client.db('chat');
     const collection = db.collection('adm');
 
     const novaMensagem : MensagemInterface = {
@@ -119,7 +120,8 @@ export async function usuarioEnviarMensagemParaAdm(req:any, res:any) {
 
 export async function buscarMensagemParaAdm(req:any, res:any) {
   try {
-    const db = await conectarAoBanco();
+    const client = await conectarAoBanco();
+    const db = client.db('chat');
     const collection = db.collection('adm');
     const mensagens = await collection.find().toArray();
 
