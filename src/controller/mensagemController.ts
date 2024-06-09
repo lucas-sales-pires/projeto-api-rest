@@ -1,6 +1,6 @@
-import { ObjectId } from 'mongodb';
 import { conectarAoBanco } from '../models/banco';
 import { MensagemInterface } from '../models/mensagem.interface';
+import { nanoid } from 'nanoid';
 
 
 
@@ -36,14 +36,14 @@ export async function enviarMensagemParaUsuario(req:any, res:any) {
     const collection = db.collection('comunicacao');
 
     const novaMensagem:MensagemInterface = {
+      _id: nanoid(),
       remetente: 'Servidor',
       conteudo: conteudo,
       usuario: usuario, 
       timestamp: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR'),
     };
 
-    const resultado = await collection.insertOne(novaMensagem);
-    novaMensagem._id = resultado.insertedId;
+    await collection.insertOne(novaMensagem);
 
 
     res.status(200).json({ mensagem: 'Mensagem enviada com sucesso', id: novaMensagem._id });
@@ -83,6 +83,7 @@ export async function usuarioEnviarMensagemParaAdm(req:any, res:any) {
     const collection = db.collection('adm');
 
     const novaMensagem : MensagemInterface = {
+      _id: nanoid(),
       remetente: usuario,
       conteudo: conteudo,
       usuario: 'Servidor',
@@ -90,8 +91,7 @@ export async function usuarioEnviarMensagemParaAdm(req:any, res:any) {
 
     };
 
-    const resultado = await collection.insertOne(novaMensagem);
-    novaMensagem._id = resultado.insertedId;
+    await collection.insertOne(novaMensagem);
 
     res.status(200).json({ mensagem: 'Mensagem enviada com sucesso', id: novaMensagem._id });
   } catch (err:any) {
@@ -119,17 +119,14 @@ export async function buscarMensagemParaAdm(req:any, res:any) {
   }
 }
 
-export async function excluirMensagemAdm(req: any, res: any) {
+export async function excluirMensagemAdm(req:any, res:any) {
   try {
     const { id } = req.params;
-
     const client = await conectarAoBanco();
     const db = client.db('chat');
     const collection = db.collection('adm');
 
-    const objectId = ObjectId.createFromHexString(id);
-
-    const resultado = await collection.deleteOne({ _id: objectId });
+    const resultado = await collection.deleteOne({ _id: id });
 
     if (resultado.deletedCount === 0) {
       return res.status(404).json({ erro: 'Mensagem não encontrada' });
@@ -141,17 +138,15 @@ export async function excluirMensagemAdm(req: any, res: any) {
     return res.status(500).json({ erro: 'Erro interno do servidor' });
   }
 }
-export async function excluirMensagemUsuario(req: any, res: any) {
-  try {
-    const { id } = req.params; 
 
+export async function excluirMensagemUsuario(req:any, res:any) {
+  try {
+    const { id } = req.params;
     const client = await conectarAoBanco();
     const db = client.db('chat');
     const collection = db.collection('comunicacao');
 
-    const objectId = ObjectId.createFromHexString(id);
-
-    const resultado = await collection.deleteOne({ _id: objectId });
+    const resultado = await collection.deleteOne({ _id: id });
 
     if (resultado.deletedCount === 0) {
       return res.status(404).json({ erro: 'Mensagem não encontrada' });
