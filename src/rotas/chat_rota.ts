@@ -1,5 +1,5 @@
 import express from 'express';
-import { buscarMensagensAnteriores, enviarMensagemParaUsuario,buscarMensagemParaUsuario,buscarMensagemParaAdm,usuarioEnviarMensagemParaAdm } from '../controller/mensagemController';
+import { buscarMensagensAnteriores, enviarMensagemParaUsuario,buscarMensagemParaUsuario,buscarMensagemParaAdm,usuarioEnviarMensagemParaAdm, excluirMensagemAdm } from '../controller/mensagemController';
 
 export const routerMensagem = express();
 
@@ -10,3 +10,6 @@ routerMensagem.post('/administrativa', enviarMensagemParaUsuario);
 
 routerMensagem.get('/buscar-adm', buscarMensagemParaAdm);
 routerMensagem.post('/enviar-adm', usuarioEnviarMensagemParaAdm);
+
+routerMensagem.delete('/deletar-adm',excluirMensagemAdm);
+
