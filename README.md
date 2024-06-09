@@ -123,6 +123,22 @@ Descrição: Permite que o administrador delete uma mensagem.
 500 (Erro Interno do Servidor): Em caso de erro.
 
 
+```http
+  DELETE /deletar-usuario:
+```	
+
+Descrição: Permite que o usuário delete uma mensagem.
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `string` | ID da mensagem|
+
+#### Retorno:
+
+200 (OK): Mensagem deletada com sucesso.
+500 (Erro Interno do Servidor): Em caso de erro.
+
+
 
 
 # Observações:
