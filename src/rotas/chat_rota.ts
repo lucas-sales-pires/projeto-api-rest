@@ -11,5 +11,5 @@ routerMensagem.post('/administrativa', enviarMensagemParaUsuario);
 routerMensagem.get('/buscar-adm', buscarMensagemParaAdm);
 routerMensagem.post('/enviar-adm', usuarioEnviarMensagemParaAdm);
 
-routerMensagem.delete('/deletar-adm',excluirMensagemAdm);
-routerMensagem.delete('/deletar-usuario',excluirMensagemUsuario);
+routerMensagem.delete('/deletar-adm/:mensagem',excluirMensagemAdm);
+routerMensagem.delete('/deletar-usuario/:mensagem',excluirMensagemUsuario);

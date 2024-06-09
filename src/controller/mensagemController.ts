@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { conectarAoBanco } from '../models/banco';
 import { MensagemInterface } from '../models/mensagem.interface';
 
@@ -118,14 +119,17 @@ export async function buscarMensagemParaAdm(req:any, res:any) {
   }
 }
 
-export async function excluirMensagemAdm(req:any, res:any) {
+export async function excluirMensagemAdm(req: any, res: any) {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
+
     const client = await conectarAoBanco();
     const db = client.db('chat');
     const collection = db.collection('adm');
 
-    const resultado = await collection.deleteOne({ _id: id });
+    const objectId = ObjectId.createFromHexString(id);
+
+    const resultado = await collection.deleteOne({ _id: objectId });
 
     if (resultado.deletedCount === 0) {
       return res.status(404).json({ erro: 'Mensagem não encontrada' });
@@ -137,15 +141,17 @@ export async function excluirMensagemAdm(req:any, res:any) {
     return res.status(500).json({ erro: 'Erro interno do servidor' });
   }
 }
-
-export async function excluirMensagemUsuario(req:any, res:any) {
+export async function excluirMensagemUsuario(req: any, res: any) {
   try {
-    const { id } = req.body;
+    const { id } = req.params; 
+
     const client = await conectarAoBanco();
     const db = client.db('chat');
     const collection = db.collection('comunicacao');
 
-    const resultado = await collection.deleteOne({ _id: id });
+    const objectId = ObjectId.createFromHexString(id);
+
+    const resultado = await collection.deleteOne({ _id: objectId });
 
     if (resultado.deletedCount === 0) {
       return res.status(404).json({ erro: 'Mensagem não encontrada' });
