@@ -7,8 +7,8 @@ routerMensagem.get('/anteriores/:sala', buscarMensagensAnteriores);
 routerMensagem.get('/administrativa', buscarMensagemParaUsuario);
 routerMensagem.get('/buscar-adm', buscarMensagemParaAdm);
 
-routerMensagem.delete('/deletar-adm/:id',excluirMensagemAdm);
-routerMensagem.delete('/deletar-usuario/:id',excluirMensagemUsuario);
+routerMensagem.delete('/deletar-adm',excluirMensagemAdm);
+routerMensagem.delete('/deletar-usuario',excluirMensagemUsuario);
 
 routerMensagem.post('/administrativa', enviarMensagemParaUsuario);
 routerMensagem.post('/enviar-adm', usuarioEnviarMensagemParaAdm);
