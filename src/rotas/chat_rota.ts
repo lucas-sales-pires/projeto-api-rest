@@ -4,7 +4,7 @@ import { buscarMensagensAnteriores, enviarMensagemParaUsuario,buscarMensagemPara
 export const routerMensagem = express();
 
 routerMensagem.get('/anteriores/:sala', buscarMensagensAnteriores);
-routerMensagem.get('/administrativa/nome', buscarMensagemParaUsuario);
+routerMensagem.get('/administrativa/:nome', buscarMensagemParaUsuario);
 routerMensagem.get('/buscar-adm', buscarMensagemParaAdm);
 
 routerMensagem.delete('/deletar-adm',excluirMensagemAdm); // -> deletar mensagens enviadas para adm
