@@ -4,12 +4,11 @@ import { buscarMensagensAnteriores, enviarMensagemParaUsuario,buscarMensagemPara
 export const routerMensagem = express();
 
 routerMensagem.get('/anteriores/:sala', buscarMensagensAnteriores);
-
 routerMensagem.get('/administrativa', buscarMensagemParaUsuario);
-routerMensagem.post('/administrativa', enviarMensagemParaUsuario);
-
 routerMensagem.get('/buscar-adm', buscarMensagemParaAdm);
-routerMensagem.post('/enviar-adm', usuarioEnviarMensagemParaAdm);
 
 routerMensagem.delete('/deletar-adm/:mensagem',excluirMensagemAdm);
 routerMensagem.delete('/deletar-usuario/:mensagem',excluirMensagemUsuario);
+
+routerMensagem.post('/administrativa', enviarMensagemParaUsuario);
+routerMensagem.post('/enviar-adm', usuarioEnviarMensagemParaAdm);
