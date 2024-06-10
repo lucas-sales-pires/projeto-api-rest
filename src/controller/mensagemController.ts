@@ -34,14 +34,14 @@ export async function enviarMensagemParaUsuario(req:any, res:any) {
     const collection = db.collection('comunicacao');
 
     const novaMensagem:MensagemInterface = {
+      _id: Math.random().toString(36).substring(7),  
       remetente: 'Servidor',
       conteudo: conteudo,
       usuario: usuario, 
       timestamp: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR'),
     };
 
-    const resultado = await collection.insertOne(novaMensagem);
-    novaMensagem._id = resultado.insertedId.id;
+    await collection.insertOne(novaMensagem);
 
 
     res.status(200).json({ mensagem: 'Mensagem enviada com sucesso', id: novaMensagem._id });
@@ -81,6 +81,7 @@ export async function usuarioEnviarMensagemParaAdm(req:any, res:any) {
     const collection = db.collection('adm');
 
     const novaMensagem : MensagemInterface = {
+      _id: Math.random().toString(36).substring(7),  
       remetente: usuario,
       conteudo: conteudo,
       usuario: 'Servidor',
@@ -88,8 +89,7 @@ export async function usuarioEnviarMensagemParaAdm(req:any, res:any) {
 
     };
 
-    const resultado = await collection.insertOne(novaMensagem);
-    novaMensagem._id = resultado.insertedId.id;
+    await collection.insertOne(novaMensagem);
 
     res.status(200).json({ mensagem: 'Mensagem enviada com sucesso', id: novaMensagem._id });
   } catch (err:any) {
