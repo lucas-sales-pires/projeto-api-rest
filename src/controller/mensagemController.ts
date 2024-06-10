@@ -59,19 +59,25 @@ export async function enviarMensagemParaUsuario(req:any, res:any) {
 
 export async function buscarMensagemParaUsuario(req:any, res:any) {
   try {
-    const {nome} = req.params;
+    const { nome } = req.params;
     const client = await conectarAoBanco();
     const db = client.db('chat');
     const collection = db.collection('comunicacao');
-    const mensagens = await collection.find({ nome }).toArray();
+
+    const mensagens = await collection.find({ 
+      $or: [
+        { usuario: nome }, 
+        { remetente: 'Servidor' }   
+      ]
+    }).toArray();
 
     res.status(200).json(mensagens);
   } catch (err) {
     console.error('Erro ao buscar mensagens:', err);
     res.status(500).json({ erro: 'Erro interno do servidor' });
-  }
+  } 
 }
-    
+ 
 
 export async function usuarioEnviarMensagemParaAdm(req:any, res:any) {
   try {
