@@ -59,11 +59,11 @@ export async function enviarMensagemParaUsuario(req:any, res:any) {
 
 export async function buscarMensagemParaUsuario(req:any, res:any) {
   try {
-    const {_id} = req.params;
+    const {nome} = req.params;
     const client = await conectarAoBanco();
     const db = client.db('chat');
     const collection = db.collection('comunicacao');
-    const mensagens = await collection.find({ _id }).toArray();
+    const mensagens = await collection.find({ nome }).toArray();
 
     res.status(200).json(mensagens);
   } catch (err) {
