@@ -49,7 +49,7 @@ Descrição: Busca mensagens para um usuário específico.
 500 (Erro Interno do Servidor): Em caso de erro.
 
 ```http
-  GET /administrativa:
+  GET /administrativa:nome
 ```
 
 Descrição: Busca mensagens administrativas para um usuário.
@@ -64,7 +64,7 @@ Descrição: Busca mensagens administrativas para um usuário.
 500 (Erro Interno do Servidor): Em caso de erro.
 
 ```http
-  POST /administrativa:
+  POST /adm-enviar-msg:
 ```
 
 Descrição: Envia uma mensagem administrativa para um usuário.
